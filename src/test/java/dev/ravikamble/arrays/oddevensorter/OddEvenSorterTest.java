@@ -23,12 +23,12 @@ class OddEvenSorterTest {
     // ---------------------------------------------------------------
 
     /** Solutions that must handle ANY integer, including negatives. */
-    private static final List<OddEvenSorter> GENERAL_SOLUTIONS = List.of(
-            new PartitionSolution()
+    private static final List<NegationSolution> GENERAL_SOLUTIONS = List.of(
+            new NegationSolution()
     );
 
     /** Solutions documented as valid only for non-negative input. */
-    private static final List<OddEvenSorter> NON_NEGATIVE_ONLY_SOLUTIONS = List.of(
+    private static final List<NegationSolution> NON_NEGATIVE_ONLY_SOLUTIONS = List.of(
             new NegationSolution()
     );
 
@@ -62,19 +62,19 @@ class OddEvenSorterTest {
 
     @ParameterizedTest(name = "{0}: {1} → {2}")
     @MethodSource("nonNegativeInputs")
-    void sortsNonNegativeInput(OddEvenSorter sorter, int[] input, int[] expected) {
+    void sortsNonNegativeInput(NegationSolution sorter, int[] input, int[] expected) {
         assertArrayEquals(expected, sorter.sort(input));
     }
 
     @ParameterizedTest(name = "{0}: {1} → {2}")
     @MethodSource("negativeInputs")
-    void sortsInputWithNegatives(OddEvenSorter sorter, int[] input, int[] expected) {
+    void sortsInputWithNegatives(NegationSolution sorter, int[] input, int[] expected) {
         assertArrayEquals(expected, sorter.sort(input));
     }
 
     @ParameterizedTest(name = "{0} does not modify its input")
     @MethodSource("allSolutions")
-    void doesNotModifyInput(OddEvenSorter sorter) {
+    void doesNotModifyInput(NegationSolution sorter) {
         int[] input = {12, 1, 8, 6, 7, 9, 10, 5, 6};
         int[] snapshot = input.clone();
 
@@ -85,7 +85,7 @@ class OddEvenSorterTest {
 
     @ParameterizedTest(name = "{0} matches reference on 1,000 random arrays")
     @MethodSource("generalSolutions")
-    void matchesReferenceOnRandomInput(OddEvenSorter sorter) {
+    void matchesReferenceOnRandomInput(NegationSolution sorter) {
         Random random = new Random(42); // fixed seed → reproducible failures
         for (int run = 0; run < 1_000; run++) {
             int[] input = random.ints(random.nextInt(50), -1_000, 1_000).toArray();
@@ -108,21 +108,21 @@ class OddEvenSorterTest {
         return combine(GENERAL_SOLUTIONS.stream(), NEGATIVE_CASES);
     }
 
-    static Stream<Named<OddEvenSorter>> allSolutions() {
+    static Stream<Named<NegationSolution>> allSolutions() {
         return Stream.concat(GENERAL_SOLUTIONS.stream(), NON_NEGATIVE_ONLY_SOLUTIONS.stream())
                 .map(OddEvenSorterTest::named);
     }
 
-    static Stream<Named<OddEvenSorter>> generalSolutions() {
+    static Stream<Named<NegationSolution>> generalSolutions() {
         return GENERAL_SOLUTIONS.stream().map(OddEvenSorterTest::named);
     }
 
-    private static Stream<Arguments> combine(Stream<OddEvenSorter> sorters, List<int[][]> cases) {
+    private static Stream<Arguments> combine(Stream<NegationSolution> sorters, List<int[][]> cases) {
         return sorters.flatMap(sorter -> cases.stream()
                 .map(c -> Arguments.of(named(sorter), c[0].clone(), c[1])));
     }
 
-    private static Named<OddEvenSorter> named(OddEvenSorter sorter) {
+    private static Named<NegationSolution> named(NegationSolution sorter) {
         return Named.of(sorter.getClass().getSimpleName(), sorter);
     }
 
