@@ -50,7 +50,7 @@ The repository follows one simple pattern for every problem:
 
 | # | Problem | Topic | Round | Difficulty | Solutions |
 |---|---|---|---|---|---|
-| 001 | [Sort Odds Descending, Evens Ascending](src/main/java/dev/ravikamble/arrays/OddEvenSorter.java) | Arrays, Sorting | Technical L1 (Fintech) | Easy | `PartitionSolution`, `NegationSolution` |
+| 001 | [Sort Odds Descending, Evens Ascending](src/main/java/dev/ravikamble/arrays/oddevensorter/OddEvenSorter.java) | Arrays, Sorting | Technical L1 (Fintech) | Easy | `PartitionSolution`, `NegationSolution` |
 
 > Company names are intentionally not listed. Questions are tagged by round and domain only.
 
@@ -65,15 +65,17 @@ interview-code-ledger/
 └── src/
     ├── main/java/dev/ravikamble/
     │   └── arrays/
-    │       ├── OddEvenSorter.java        ← problem (interface)
-    │       ├── PartitionSolution.java    ← solution
-    │       └── NegationSolution.java     ← solution
+    │       └── oddevensorter/
+    │           ├── OddEvenSorter.java        ← problem (interface)
+    │           ├── PartitionSolution.java    ← solution
+    │           └── NegationSolution.java     ← solution
     └── test/java/dev/ravikamble/
         └── arrays/
-            └── OddEvenSorterTest.java    ← shared tests
+            └── oddevensorter/
+                └── OddEvenSorterTest.java    ← shared tests
 ```
 
-Problems are grouped by topic package (`arrays`, `strings`, `collections`, `concurrency`, `streams`, …). As a topic grows, each problem moves into its own sub-package (e.g. `dev.ravikamble.arrays.oddevensort`).
+Problems are grouped by topic package (`arrays`, `strings`, `collections`, `concurrency`, `streams`, …). As a topic grows, each problem moves into its own sub-package (e.g. `dev.ravikamble.arrays.oddevensorter`).
 
 ---
 
