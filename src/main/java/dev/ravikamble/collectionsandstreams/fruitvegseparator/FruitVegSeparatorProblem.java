@@ -77,7 +77,7 @@ import java.util.Map;
  * F4. Parse into a record Produce(Category, String) first, then group by enum.
  * F5. Input as one String: "Fruit:Apple,Vegetable:Potato" — still one line?
  */
-public interface FruitVegSeparator {
+public interface FruitVegSeparatorProblem {
 
     Map<String, List<String>> separate(List<String> items);
 }

@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * On large production inputs this avoids double the parsing work and the
  * extra temporary array created by each split.
  */
-public class SpitAndGroupBySolution implements FruitVegSeparator {
+public class SpitAndGroupBySolution implements FruitVegSeparatorProblem {
     @Override
     public Map<String, List<String>> separate(List<String> items) {
         return items.stream()
@@ -25,7 +25,7 @@ public class SpitAndGroupBySolution implements FruitVegSeparator {
 
     public static void main(String[] args) {
         List<List<String>> problem = new ArrayList<>();
-        FruitVegSeparator separator = new SpitAndGroupBySolution();
+        FruitVegSeparatorProblem separator = new SpitAndGroupBySolution();
 
 
         // S1: Happy path, mixed list
