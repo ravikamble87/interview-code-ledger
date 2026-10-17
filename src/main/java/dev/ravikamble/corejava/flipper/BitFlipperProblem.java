@@ -3,7 +3,7 @@ package dev.ravikamble.corejava.flipper;
 /**
  * <pre>
  * ============================================================================
- * PROBLEM STATEMENT
+ * PROBLEM #004 — BIT FLIPPER WITHOUT OPERATORS
  * ============================================================================
  * Write a method that returns 0 when given 1, and returns 1 when given 0,
  * WITHOUT using any operator.
@@ -52,8 +52,28 @@ package dev.ravikamble.corejava.flipper;
  * F2. Which approach fails loudly on invalid input, and which fails silently?
  * F3. Which is fastest / allocation-free?
  * F4. Generalize: given a and b, return b when passed a, and a when passed b.
+ *
+ * ============================================================================
+ * SOLUTIONS
+ * ============================================================================
+ * LibMathMethodSolution    -> Math.subtractExact(1, input)
+ * ComparisonMethodSolution -> Integer.compare(1, input)
+ *
+ * ============================================================================
+ * SOURCE
+ * ============================================================================
+ * Asked in: Technical round, Oct 2026
  * </pre>
+ *
+ * @author Ravi Kamble
  */
 public interface BitFlipperProblem {
+
+    /**
+     * Returns 1 when given 0, and 0 when given 1, without using any operator.
+     *
+     * @param input 0 or 1; behaviour for any other value is up to the solution
+     * @return the flipped bit
+     */
     int flip(int input);
 }

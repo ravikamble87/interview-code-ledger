@@ -21,7 +21,7 @@ import java.util.Arrays;
  *
  * @author Ravi Kamble
  */
-public class NegationSolution implements OddEvenSorter {
+public class NegationSolution implements OddEvenSorterProblem {
 
     @Override
     public int[] sort(int[] input) {

@@ -21,7 +21,7 @@ import java.util.Arrays;
  *
  * @author Ravi Kamble
  */
-public class PartitionSolution implements OddEvenSorter {
+public class PartitionSolution implements OddEvenSorterProblem {
 
     @Override
     public int[] sort(int[] input) {

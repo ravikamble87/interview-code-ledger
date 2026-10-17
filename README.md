@@ -20,7 +20,7 @@ The repository follows one simple pattern for every problem:
 
 ```
             ┌──────────────────────────┐
-            │   OddEvenSorter          │  ← interface = problem statement + contract
+            │   OddEvenSorterProblem   │  ← interface = problem statement + contract
             │   (problem #001)         │
             └────────────┬─────────────┘
                          │ implements
@@ -33,7 +33,7 @@ The repository follows one simple pattern for every problem:
           └──────────────┬──────────────┘
                          │ runs every solution against the same cases
             ┌────────────┴─────────────┐
-            │   OddEvenSorterTest      │  ← shared test suite
+            │ OddEvenSorterProblemTest │  ← shared test suite
             └──────────────────────────┘
 ```
 
@@ -42,7 +42,7 @@ The repository follows one simple pattern for every problem:
 - **One contract, many solutions** — comparing approaches side by side is exactly what interviewers probe: *"Can you do it another way? What's the trade-off?"*
 - **Tests are shared, not duplicated** — adding a solution means adding one class and one line in the test; it is immediately checked against all existing cases.
 - **Limitations are explicit** — a solution that only works for a subset of inputs (e.g. non-negative numbers) is registered as such and tested only on what it claims to support.
-- **Readable test output** — tests use `@ParameterizedTest` with named arguments, so results read like `PartitionSolution: [12, 1, 8…] → [9, 7, 5…]`.
+- **Readable test output** — tests use `@ParameterizedClass` with named solutions, so results read like `PartitionSolution > Scenarios > [12, 1, 8…] -> [9, 7, 5…]`.
 
 ---
 
@@ -50,7 +50,10 @@ The repository follows one simple pattern for every problem:
 
 | # | Problem | Topic | Round | Difficulty | Solutions |
 |---|---|---|---|---|---|
-| 001 | [Sort Odds Descending, Evens Ascending](src/main/java/dev/ravikamble/arrays/oddevensorter/OddEvenSorter.java) | Arrays, Sorting | Technical L1 (Fintech) | Easy | `PartitionSolution`, `NegationSolution` |
+| 001 | [Sort Odds Descending, Evens Ascending](src/main/java/dev/ravikamble/arrays/oddevensorter/OddEvenSorterProblem.java) | Arrays, Sorting | Technical L1 (Fintech) | Easy | `PartitionSolution`, `NegationSolution` |
+| 002 | [Longest Consecutive Sequence](src/main/java/dev/ravikamble/arrays/longestconsecutive/LongestConsecutiveSequenceProblem.java) | Arrays, Hashing | Technical | Medium | `SortingSolution`, `HashSetSolution` |
+| 003 | [Fruit / Vegetable Separator](src/main/java/dev/ravikamble/collectionsandstreams/fruitvegseparator/FruitVegSeparatorProblem.java) | Collections, Streams | Technical | Easy | `SplitAndGroupBySolution` |
+| 004 | [Bit Flipper Without Operators](src/main/java/dev/ravikamble/corejava/flipper/BitFlipperProblem.java) | Core Java | Technical | Easy | `LibMathMethodSolution`, `ComparisonMethodSolution` |
 
 > Company names are intentionally not listed. Questions are tagged by round and domain only.
 
@@ -61,18 +64,40 @@ The repository follows one simple pattern for every problem:
 ```
 interview-code-ledger/
 ├── README.md
+├── LICENSE
 ├── pom.xml
 └── src/
     ├── main/java/dev/ravikamble/
-    │   └── arrays/
-    │       └── oddevensorter/
-    │           ├── OddEvenSorter.java        ← problem (interface)
-    │           ├── PartitionSolution.java    ← solution
-    │           └── NegationSolution.java     ← solution
+    │   ├── arrays/
+    │   │   ├── oddevensorter/
+    │   │   │   ├── OddEvenSorterProblem.java               ← problem (interface)
+    │   │   │   ├── PartitionSolution.java                  ← solution
+    │   │   │   └── NegationSolution.java                   ← solution
+    │   │   └── longestconsecutive/
+    │   │       ├── LongestConsecutiveSequenceProblem.java
+    │   │       ├── SortingSolution.java
+    │   │       └── HashSetSolution.java
+    │   ├── collectionsandstreams/
+    │   │   └── fruitvegseparator/
+    │   │       ├── FruitVegSeparatorProblem.java
+    │   │       └── SplitAndGroupBySolution.java
+    │   └── corejava/
+    │       └── flipper/
+    │           ├── BitFlipperProblem.java
+    │           ├── LibMathMethodSolution.java
+    │           └── ComparisonMethodSolution.java
     └── test/java/dev/ravikamble/
-        └── arrays/
-            └── oddevensorter/
-                └── OddEvenSorterTest.java    ← shared tests
+        ├── arrays/
+        │   ├── oddevensorter/
+        │   │   └── OddEvenSorterProblemTest.java           ← contract tests
+        │   └── longestconsecutive/
+        │       └── LongestConsecutiveSequenceProblemTest.java
+        ├── collectionsandstreams/
+        │   └── fruitvegseparator/
+        │       └── FruitVegSeparatorProblemTest.java
+        └── corejava/
+            └── flipper/
+                └── BitFlipperProblemTest.java
 ```
 
 Problems are grouped by topic package (`arrays`, `strings`, `collections`, `concurrency`, `streams`, …). As a topic grows, each problem moves into its own sub-package (e.g. `dev.ravikamble.arrays.oddevensorter`).
@@ -83,7 +108,7 @@ Problems are grouped by topic package (`arrays`, `strings`, `collections`, `conc
 
 - **Java 21**
 - **Maven**
-- **JUnit 5** (Jupiter) — parameterized tests, `@MethodSource`, `Named` arguments
+- **JUnit 5.13+** (Jupiter) — `@ParameterizedClass`, `@Nested`, `@MethodSource`, `Named` arguments
 
 ---
 
@@ -100,7 +125,7 @@ mvn test
 To run the tests for a single problem:
 
 ```bash
-mvn test -Dtest=OddEvenSorterTest
+mvn test -Dtest=OddEvenSorterProblemTest
 ```
 
 ---
@@ -123,7 +148,7 @@ mvn test -Dtest=OddEvenSorterTest
  * <h3>Source</h3>
  * <p>Asked in: Technical round (Fintech), Oct 2026
  */
-public interface OddEvenSorter {
+public interface OddEvenSorterProblem {
     int[] sort(int[] input);
 }
 ```
@@ -135,7 +160,7 @@ public interface OddEvenSorter {
  * Approach — Partition, then sort each range.
  * Time: O(n log n)   Space: O(n)
  */
-public class PartitionSolution implements OddEvenSorter {
+public class PartitionSolution implements OddEvenSorterProblem {
     @Override
     public int[] sort(int[] input) { ... }
 }
@@ -144,15 +169,21 @@ public class PartitionSolution implements OddEvenSorter {
 ### 3. The test — the judge
 
 ```java
-/** Solutions that must handle ANY input. */
-private static final List<OddEvenSorter> GENERAL_SOLUTIONS = List.of(
-        new PartitionSolution()
-);
+@ParameterizedClass(name = "{0}")
+@MethodSource("implementations")
+class OddEvenSorterProblemTest {
 
-/** Solutions documented as valid only for a subset of input. */
-private static final List<OddEvenSorter> NON_NEGATIVE_ONLY_SOLUTIONS = List.of(
-        new NegationSolution()
-);
+    static List<Arguments> implementations() {
+        return List.of(
+                Arguments.of(Named.of("PartitionSolution", new PartitionSolution()), Support.ANY_INTEGER),
+                Arguments.of(Named.of("NegationSolution", new NegationSolution()), Support.NON_NEGATIVE_ONLY)
+        );
+    }
+
+    @Parameter(0) OddEvenSorterProblem sorter;
+    @Parameter(1) Support support;   // tests needing negatives are skipped for NON_NEGATIVE_ONLY
+    ...
+}
 ```
 
 Each test suite typically includes:
@@ -194,8 +225,8 @@ Have a different way to solve an existing problem? Contributions are welcome.
    - Any input limitations
    - `@author` with your name / GitHub handle
 4. Register your class in the problem's test class:
-   - in the general list if it handles all inputs, or
-   - in the restricted list if it only supports a subset (and say so in the Javadoc).
+   - add one line to `implementations()`, or
+   - if it only supports a subset of input, register it with the restricted flag the test provides (and say so in the Javadoc).
 5. Add your solution to the **Solutions** list in the interface Javadoc and to the Problem Index.
 6. Run `mvn test` and open a pull request.
 
@@ -205,7 +236,8 @@ A solution is merged only if all tests pass.
 
 ## Conventions
 
-- **Naming** — interface named after the problem (`OddEvenSorter`); solutions named after their approach (`PartitionSolution`, `NegationSolution`).
+- **Naming** — interface named after the problem with a `Problem` suffix (`OddEvenSorterProblem`); solutions named after their approach with a `Solution` suffix (`PartitionSolution`, `NegationSolution`); the test class is the interface name plus `Test` (`OddEvenSorterProblemTest`).
+- **Contract tests** — a `*ProblemTest` only uses the interface, so any class that implements it can be registered with one line in `implementations()` and run against every test.
 - **Inputs are not mutated** — unless a problem explicitly asks for an in-place algorithm, solutions return a new result and leave the caller's data untouched.
 - **Primitives where it matters** — prefer `int[]` over `Integer[]` to avoid boxing overhead.
 - **Honest limitations** — if a solution breaks for some inputs, the Javadoc says so and the tests reflect it.

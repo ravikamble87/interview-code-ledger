@@ -31,13 +31,14 @@ import static org.junit.jupiter.api.Assertions.fail;
  * normalization), the tests accept every reasonable choice — fail fast, skip,
  * or keep — but never silently corrupt or lose data.
  */
+@DisplayName("#003 — Fruit / Vegetable Separator")
 @ParameterizedClass(name = "{0}")
 @MethodSource("implementations")
 class FruitVegSeparatorProblemTest {
 
     static List<Arguments> implementations() {
         return List.of(
-                Arguments.of(Named.of("SpitAndGroupBySolution", new SpitAndGroupBySolution()))
+                Arguments.of(Named.of("SplitAndGroupBySolution", new SplitAndGroupBySolution()))
                 // Arguments.of(Named.of("YourNextSolution", new YourNextSolution()))
         );
     }
