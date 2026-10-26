@@ -2,7 +2,7 @@ package dev.ravikamble.arrays.twosum;
 
 import java.util.Arrays;
 
-public class SubstractAndFindSolution implements TwoSumProblem {
+public class TwoLoopSolution implements TwoSumProblem {
     @Override
     public int[] findIndices(int[] nums, int target) {
         int[] output = new int[2];
@@ -24,7 +24,7 @@ public class SubstractAndFindSolution implements TwoSumProblem {
     }
 
     public static void main(String[] args) {
-        TwoSumProblem twoSum = new SubstractAndFindSolution();
+        TwoSumProblem twoSum = new TwoLoopSolution();
         int[] nums = {3, 2, 4};
         int target = 6;
         System.out.println(Arrays.toString(twoSum.findIndices(nums, target)));
