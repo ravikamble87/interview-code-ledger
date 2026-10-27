@@ -1,32 +1,34 @@
 package dev.ravikamble.arrays.twosum;
 
-import java.util.Arrays;
-
+/**
+ * <b>Approach — Brute force, check every pair.</b>
+ *
+ * <ol>
+ *   <li>For each index {@code i}, try every later index {@code j > i}.</li>
+ *   <li>Return {@code [i, j]} as soon as {@code nums[i] + nums[j] == target}.</li>
+ * </ol>
+ *
+ * <p>Starting {@code j} at {@code i + 1} means an element is never paired with itself, and each
+ * pair is checked only once: n(n-1)/2 checks in the worst case.
+ *
+ * <p><b>Overflow:</b> within the constraints the sum is at most 2 * 10<sup>9</sup>, which fits in
+ * an {@code int}. For values outside the constraints, {@code nums[i] + nums[j]} can overflow.
+ *
+ * <p><b>Time:</b> O(n<sup>2</sup>) &nbsp; <b>Space:</b> O(1)
+ *
+ * @author Ravi Kamble
+ */
 public class TwoLoopSolution implements TwoSumProblem {
+
     @Override
     public int[] findIndices(int[] nums, int target) {
-        int[] output = new int[2];
-        boolean found = false;
-        for(int i = 0; i < nums.length - 1; i++){
-            for(int j  = i + 1; j < nums.length; j++){
-                if(nums[i] + nums[j] == target){
-                    output[0] = i;
-                    output[1] = j;
-                    found = true;
-                    break;
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};   // return as soon as the pair is found
                 }
             }
-            if(found){
-               break;
-            }
         }
-        return output;
-    }
-
-    public static void main(String[] args) {
-        TwoSumProblem twoSum = new TwoLoopSolution();
-        int[] nums = {3, 2, 4};
-        int target = 6;
-        System.out.println(Arrays.toString(twoSum.findIndices(nums, target)));
+        throw new IllegalArgumentException("No two elements add up to " + target);
     }
 }

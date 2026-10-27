@@ -54,6 +54,8 @@ The repository follows one simple pattern for every problem:
 | 002 | [Longest Consecutive Sequence](src/main/java/dev/ravikamble/arrays/longestconsecutive/LongestConsecutiveSequenceProblem.java) | Arrays, Hashing | Technical | Medium | `SortingSolution`, `HashSetSolution` |
 | 003 | [Fruit / Vegetable Separator](src/main/java/dev/ravikamble/collectionsandstreams/fruitvegseparator/FruitVegSeparatorProblem.java) | Collections, Streams | Technical | Easy | `SplitAndGroupBySolution` |
 | 004 | [Bit Flipper Without Operators](src/main/java/dev/ravikamble/corejava/flipper/BitFlipperProblem.java) | Core Java | Technical | Easy | `LibMathMethodSolution`, `ComparisonMethodSolution` |
+| 005 | [Two Sum](src/main/java/dev/ravikamble/arrays/twosum/TwoSumProblem.java) | Arrays, Hashing | Practice (LeetCode #1) | Easy | `TwoLoopSolution`, `HashMapSolution` |
+| 006 | [Top Cities by Successful Transaction Amount](src/main/java/dev/ravikamble/collectionsandstreams/top2cities/TopCitiesProblem.java) | Collections, Streams | Technical | Medium | `Solution1` |
 
 > Company names are intentionally not listed. Questions are tagged by round and domain only.
 
@@ -73,14 +75,22 @@ interview-code-ledger/
     │   │   │   ├── OddEvenSorterProblem.java               ← problem (interface)
     │   │   │   ├── PartitionSolution.java                  ← solution
     │   │   │   └── NegationSolution.java                   ← solution
-    │   │   └── longestconsecutive/
-    │   │       ├── LongestConsecutiveSequenceProblem.java
-    │   │       ├── SortingSolution.java
-    │   │       └── HashSetSolution.java
+    │   │   ├── longestconsecutive/
+    │   │   │   ├── LongestConsecutiveSequenceProblem.java
+    │   │   │   ├── SortingSolution.java
+    │   │   │   └── HashSetSolution.java
+    │   │   └── twosum/
+    │   │       ├── TwoSumProblem.java
+    │   │       ├── TwoLoopSolution.java
+    │   │       └── HashMapSolution.java
     │   ├── collectionsandstreams/
-    │   │   └── fruitvegseparator/
-    │   │       ├── FruitVegSeparatorProblem.java
-    │   │       └── SplitAndGroupBySolution.java
+    │   │   ├── fruitvegseparator/
+    │   │   │   ├── FruitVegSeparatorProblem.java
+    │   │   │   └── SplitAndGroupBySolution.java
+    │   │   └── top2cities/
+    │   │       ├── TopCitiesProblem.java
+    │   │       ├── Transaction.java                        ← model used by the problem
+    │   │       └── Solution1.java
     │   └── corejava/
     │       └── flipper/
     │           ├── BitFlipperProblem.java
@@ -90,11 +100,15 @@ interview-code-ledger/
         ├── arrays/
         │   ├── oddevensorter/
         │   │   └── OddEvenSorterProblemTest.java           ← contract tests
-        │   └── longestconsecutive/
-        │       └── LongestConsecutiveSequenceProblemTest.java
+        │   ├── longestconsecutive/
+        │   │   └── LongestConsecutiveSequenceProblemTest.java
+        │   └── twosum/
+        │       └── TwoSumProblemTest.java
         ├── collectionsandstreams/
-        │   └── fruitvegseparator/
-        │       └── FruitVegSeparatorProblemTest.java
+        │   ├── fruitvegseparator/
+        │   │   └── FruitVegSeparatorProblemTest.java
+        │   └── top2cities/
+        │       └── TopCitiesProblemTest.java
         └── corejava/
             └── flipper/
                 └── BitFlipperProblemTest.java
