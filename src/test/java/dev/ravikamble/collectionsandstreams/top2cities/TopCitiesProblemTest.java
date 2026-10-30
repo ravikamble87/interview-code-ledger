@@ -44,8 +44,8 @@ class TopCitiesProblemTest {
 
     static List<Arguments> implementations() {
         return List.of(
-                Arguments.of(Named.of("Solution1", new Solution1()))
-                // Arguments.of(Named.of("YourNextSolution", new YourNextSolution()))
+                Arguments.of(Named.of("Solution1", new Solution1())),
+                Arguments.of(Named.of("Solution2", new Solution2()))
         );
     }
 
